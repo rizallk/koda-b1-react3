@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Card from './components/Card';
+import { filter } from '../utils/filter';
 
 export default function App() {
   const [data, setData] = useState([]);
@@ -20,12 +21,6 @@ export default function App() {
     fetchUsers();
   }, []);
 
-  function filter(sourceData, searchName = '') {
-    return sourceData.filter((v) =>
-      v.name.toLowerCase().includes(searchName.toLowerCase()),
-    );
-  }
-
   return (
     <div className="m-5">
       <div className="bg-cyan-200 border-3 border-cyan-700 rounded-lg p-4">
@@ -35,7 +30,8 @@ export default function App() {
           filter(data, '').map((v, i) => {
             return (
               <Card variant="var2" key={i}>
-                {v.name}
+                <p>{v.name}</p>
+                <p>{v.email}</p>
               </Card>
             );
           })
